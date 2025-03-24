@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Link } from "react-router";
+import { z } from "zod";
 
 import PasswordInput from "@/components/PasswordInput";
 import { Button } from "@/components/ui/button";
@@ -14,6 +15,34 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 
+const signupSchema = z.object({
+  firstName: z.string().trim().min(1, {
+    message: "O nome é obrigatório",
+  }),
+  lastName: z.string().trim().min(1, {
+    message: "O sobrenome é obrigatório",
+  }),
+  email: z
+    .string()
+    .email({
+      message: "O email é inválido",
+    })
+    .trim()
+    .min(1, {
+      message: "O email é obrigatório",
+    }),
+  password: z.string().trim().min(6, {
+    message: "A senha deve ter no mínimo 6 caracteres",
+  }),
+  passwordConfirmation: z.string().trim().min(6, {
+    message: "A confirmação de senha é obrigatória",
+  }),
+  terms: z.boolean().refine((value) => value === true, {
+    message: "Você precisa aceitar os termos",
+  }),
+});
+
+console.log(signupSchema);
 const SignUpPage = () => {
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center gap-3">
