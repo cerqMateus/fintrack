@@ -1,5 +1,7 @@
+import { Button } from "./components/ui/button";
+
 const App = () => {
-  return <h1 className="text-red-600">Testando o App</h1>;
+  return <Button>Testando o App</Button>;
 };
 
 export default App;
