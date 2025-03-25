@@ -52,7 +52,6 @@ const signupSchema = z.object({
   }),
 });
 
-console.log(signupSchema);
 const SignUpPage = () => {
   const methods = useForm({
     resolver: zodResolver(signupSchema),
@@ -74,7 +73,7 @@ const SignUpPage = () => {
       <Form {...methods}>
         <form onSubmit={methods.handleSubmit(handleSubmit)}>
           <Card className="w-[500px]">
-            <CardHeader>
+            <CardHeader className="items-center">
               <CardTitle>Crie a sua conta</CardTitle>
               <CardDescription>Insira os seus dados abaixo</CardDescription>
             </CardHeader>
